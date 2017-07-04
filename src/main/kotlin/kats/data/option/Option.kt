@@ -35,3 +35,13 @@ sealed class Option<out A> : OptionKind<A> {
         is Option.None -> empty
     }
 }
+
+inline fun <A> Option<A>.getOrElse(other: () -> A): A = when (this) {
+    is Option.Some -> value
+    is Option.None -> other()
+}
+
+inline fun <A> Option<A>.orElse(other: () -> Option<A>): Option<A> = when (this) {
+    is Option.Some -> this
+    is Option.None -> other()
+}
