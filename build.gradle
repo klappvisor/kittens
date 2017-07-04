@@ -1,4 +1,4 @@
-group 'kats'
+group 'kittens'
 version '1.0-SNAPSHOT'
 
 buildscript {
