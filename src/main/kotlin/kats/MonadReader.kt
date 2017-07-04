@@ -1,11 +1,11 @@
 package kats
 
-import kats.kinds.Kind1
+import kats.kinds.K1
 
 interface MonadReader<F, R> : Monad<F> {
-    fun ask(): Kind1<F, R>
+    fun ask(): K1<F, R>
 
-    fun <A> local(fa: Kind1<F, A>, f: (R) -> R): Kind1<F, A>
+    fun <A> local(fa: K1<F, A>, f: (R) -> R): K1<F, A>
 
-    fun <A> reader(f: (R) -> A): Kind1<F, A> = map(ask(), f)
+    fun <A> reader(f: (R) -> A): K1<F, A> = map(ask(), f)
 }

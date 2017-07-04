@@ -1,16 +1,16 @@
 package kats
 
 import kats.data.option.Option
-import kats.kinds.Kind1
+import kats.kinds.K1
 
 interface FunctorFilter<F> : Functor<F> {
-    fun <A, B> mapFilter(fa: Kind1<F, A>, f: (A) -> Option<B>): Kind1<F, B>
+    fun <A, B> mapFilter(fa: K1<F, A>, f: (A) -> Option<B>): K1<F, B>
 
-    fun <A, B> collect(fa: Kind1<F, A>, f: (A) -> Option<B>): Kind1<F, B> =
+    fun <A, B> collect(fa: K1<F, A>, f: (A) -> Option<B>): K1<F, B> =
             mapFilter(fa, f)
 
-    fun <A> filter(fa: Kind1<F, A>, f: (A) -> Boolean): Kind1<F, A> =
+    fun <A> filter(fa: K1<F, A>, f: (A) -> Boolean): K1<F, A> =
             mapFilter(fa) { a -> if(f(a)) Option.Some(a) else Option.None }
 
-    fun <A> flattenOption(fa: Kind1<F, Option<A>>): Kind1<F, A> = mapFilter(fa) { it }
+    fun <A> flattenOption(fa: K1<F, Option<A>>): K1<F, A> = mapFilter(fa) { it }
 }

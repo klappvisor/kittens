@@ -1,6 +1,6 @@
 package kats
 
-import kats.kinds.Kind1
+import kats.kinds.K1
 
 /**
  * Comonad
@@ -15,6 +15,6 @@ interface Comonad<F> : CoflatMap<F> {
      * `extract` is the dual of `pure` on Monad (via `Applicative`)
      * and extracts the value from its context
      */
-    fun <A> extract(x: Kind1<F, A>): A
+    fun <A> extract(x: K1<F, A>): A
 }
 

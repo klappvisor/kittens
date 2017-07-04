@@ -1,7 +1,7 @@
 package kats
 
-import kats.kinds.Kind1
+import kats.kinds.K1
 
 interface Cartesian<F> {
-    fun <A, B> product(fa: Kind1<F, A>, fb: Kind1<F, B>): Kind1<F, Pair<A, B>>
+    fun <A, B> product(fa: K1<F, A>, fb: K1<F, B>): K1<F, Pair<A, B>>
 }

@@ -1,18 +1,18 @@
 package kats
 
-import kats.kinds.Kind1
+import kats.kinds.K1
 
 interface MonadState<F, S> : Monad<F> {
-    fun get(): Kind1<F, S>
+    fun get(): K1<F, S>
 
-    fun set(s: S): Kind1<F, Unit>
+    fun set(s: S): K1<F, Unit>
 
-    fun <A> state(f: (S) -> Pair<S, A>): Kind1<F, A> =
+    fun <A> state(f: (S) -> Pair<S, A>): K1<F, A> =
             flatMap(get()) { ss -> val (s, a) = f(ss); map(set(s)) { _ -> a } }
 
-    fun modify(f: (S) -> S): Kind1<F, Unit> =
+    fun modify(f: (S) -> S): K1<F, Unit> =
             flatMap(get()) { set(f(it)) }
 
-    fun <A> inspect(f: (S) -> A): Kind1<F, A> =
+    fun <A> inspect(f: (S) -> A): K1<F, A> =
             map(get(), f)
 }

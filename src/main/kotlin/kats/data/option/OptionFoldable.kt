@@ -12,7 +12,7 @@ object OptionFoldable : Foldable<Option.F> {
         }
     }
 
-    override fun <A, B> foldRight(fa: OptionKind<A>, b: B, f: (A, B) -> B): B {
+    override fun <A, B> foldRight(fa: OptionKind<A>, b: Lazy<B>, f: (A, Lazy<B>) -> Lazy<B>): Lazy<B> {
         val option = fa.narrowOption()
         return when(option) {
             is Option.None -> b
